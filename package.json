@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "author": "",
+  "author": "Bohdan Melnyk",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
