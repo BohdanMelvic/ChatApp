@@ -8,10 +8,21 @@ socket.on('message', (message) => {
 
 messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const message = document.querySelector('.inputText').value;
+    
+    const inputText = document.querySelector('.inputText');
+    const messageFormBtn = document.querySelector('.messageFormBtn');
+    const message = e.target.elements.message.value;
 
-    socket.emit('sendMessage', message, (textFormServer) => {
-        console.log('Message delivired.', textFormServer);
+    messageFormBtn.setAttribute('disabled', 'disabled'); // disabled btn after sending message - you can't send two times the same message
+
+    socket.emit('sendMessage', message, (error) => {
+        messageFormBtn.removeAttribute('disabled', 'disabled');
+        inputText.value = '';
+        inputText.focus();
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message delivired.');
     });
 });
 
@@ -20,10 +31,15 @@ sendLocationBtn.addEventListener('click', (e) => {
         return alert('Geolocation is not supported by your browser.')
     }
 
+    sendLocationBtn.setAttribute('disabled', 'disabled');
+
     navigator.geolocation.getCurrentPosition( (position) => {
         socket.emit('sendLocation', {
             latitude: position.coords.latitude,
             longitude:  position.coords.longitude
+        }, () => {
+            sendLocationBtn.removeAttribute('disabled', 'disabled');
+            console.log('Your Position delivired.');
         });
     });
 });
