@@ -17,12 +17,19 @@ app.use(express.static(publicDirectoryPath));
 // io.emit - send data to ALL users which connected by 'someChannelName'
 // socket.broadcast - send data to all users except current user whichs connected by 'someChannelName'
 // socket.on - received data from user which connected by 'someChannelName'
+// socket.join(room) - method which automatically join user to exactly this room
+// io.to(room).emit - send data to ALL users in specific room
+// socket.broadcast.to(room).emit - send data to all users except current user in specific room
 
 io.on('connection', (socket) => {
-    console.log('New WebSocket connection');
-    
-    socket.emit('message', generateMessage('Welcome!'));
-    socket.broadcast.emit('message', generateMessage("A new user has joined")); 
+    console.log('New WebSocket connection'); 
+
+    socket.on('join', ({ username, room }) => {
+        socket.join(room); 
+
+        socket.emit('message', generateMessage('Welcome!'));
+        socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined.`));
+    });
 
     socket.on('sendMessage', (message, callback) => {
         const filter = new Filter();
@@ -30,17 +37,17 @@ io.on('connection', (socket) => {
         if (filter.isProfane(message)) {
             return callback('Profanity is not allowed!')
         }
-        io.emit('message', generateMessage(message));
+        io.to(room).emit('message', generateMessage(message));
         callback('Delivired!');
     });
 
     socket.on('sendLocation', (location, callback) => { 
-        io.emit('locationMessage', generateLocation(location));
+        io.to(room).emit('locationMessage', generateLocation(location));
         callback();
     });
 
     socket.on('disconnect', () => {
-        io.emit('message', generateMessage('User has leaved a chat!'));
+        io.to(room).emit('message', generateMessage(`${username} has leaved the chat.`));
     });
 }); 
 

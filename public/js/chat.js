@@ -8,6 +8,9 @@ const messages = document.querySelector('#messages');
 const messageTemplate = document.querySelector('#messageTemplate').innerHTML;
 const locationeTemplate = document.querySelector('#locationeTemplate').innerHTML;
 
+// Options 
+const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }); // using qs library, which takes url address and creat object with data from my join-form
+
 socket.on('message', (message) => {
     const html = Mustache.render(messageTemplate, { 
         message: message.text,
@@ -61,3 +64,6 @@ sendLocationBtn.addEventListener('click', (e) => {
         });
     });
 });
+
+socket.emit('join', { username, room });
+socket.emit('disconnect', { username, room });
