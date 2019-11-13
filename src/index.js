@@ -33,8 +33,8 @@ io.on('connection', (socket) => {
         }
         socket.join(user.room); 
 
-        socket.emit('message', generateMessage('Welcome!'));
-        socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined.`));
+        socket.emit('message', generateMessage('Chat App', 'Welcome!'));
+        socket.broadcast.to(room).emit('message', generateMessage('Chat App', `${username} has joined.`));
 
         callback();
     });
@@ -46,14 +46,14 @@ io.on('connection', (socket) => {
         if (filter.isProfane(message)) {
             return callback('Profanity is not allowed!')
         }
-        io.to(user.room).emit('message', generateMessage(message));
+        io.to(user.room).emit('message', generateMessage(user.username, message));
         callback('Delivired!');
     });
 
     socket.on('sendLocation', (location, callback) => { 
         const user = getUser(socket.id);
 
-        io.to(user.room).emit('locationMessage', generateLocation(location));
+        io.to(user.room).emit('locationMessage', generateLocation(user.username, location));
         callback();
     });
 
@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
         const user = removeUser(socket.id);
 
         if (user) {
-            io.to(user.room).emit('message', generateMessage(`${user.username} has left the chat.`));
+            io.to(user.room).emit('message', generateMessage('Chat App',`${user.username} has left the chat.`));
         };
     });
 }); 
