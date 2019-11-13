@@ -7,6 +7,7 @@ const messages = document.querySelector('#messages');
 // Templates
 const messageTemplate = document.querySelector('#messageTemplate').innerHTML;
 const locationeTemplate = document.querySelector('#locationeTemplate').innerHTML;
+const sidebarTemplate = document.querySelector('#sidebarTemplate').innerHTML;
 
 // Options 
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }); // using qs library, which takes url address and creat object with data from my join-form
@@ -27,6 +28,12 @@ socket.on('locationMessage', (url) => {
         createdAt: moment(url.createdAt).format('H:mm')
      }); // generate messageTemplate from script on index.html page and provided it by variable message 
     messages.insertAdjacentHTML('beforeend', html)
+});
+
+socket.on('usersInRoom', ({room, users}) => {
+    const html = Mustache.render(sidebarTemplate, { room, users });
+
+    document.querySelector('#sidebar').innerHTML = html;
 });
 
 messageForm.addEventListener('submit', (e) => {
