@@ -12,26 +12,7 @@ const sidebarTemplate = document.querySelector('#sidebarTemplate').innerHTML;
 // Options 
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }); // using qs library, which takes url address and creat object with data from my join-form
 const autoscroll = () => {
-    // New message element
-    const newMessage = messages.lastElementChild
-
-    // Height of the new message
-    const newMessageStyles = getComputedStyle(newMessage)
-    const newMessageMargin = parseInt(newMessageStyles.marginBottom)
-    const newMessageHeight = newMessage.offsetHeight + newMessageMargin
-
-    // Visible height
-    const visibleHeight = messages.offsetHeight
-
-    // Height of messages container
-    const containerHeight = messages.scrollHeight
-
-    // How far have I scrolled?
-    const scrollOffset = messages.scrollTop + visibleHeight
-
-    if (containerHeight - newMessageHeight <= scrollOffset) {
-        messages.scrollTop = messages.scrollHeight
-    }
+    messages.scrollTop = messages.scrollHeight;
 }
 
 socket.on('message', (message) => {
@@ -74,15 +55,15 @@ messageForm.addEventListener('submit', (e) => {
         inputText.value = '';
         inputText.focus();
         if (error) {
-            return console.log(error);
+            return Swal.fire(error);
         }
-        console.log('Message delivired.');
+        //console.log('Message delivired.');
     });
 });
 
 sendLocationBtn.addEventListener('click', (e) => {
     if (!navigator.geolocation) {
-        return alert('Geolocation is not supported by your browser.')
+        return Swal.fire('Geolocation is not supported by your browser.')
     }
 
     sendLocationBtn.setAttribute('disabled', 'disabled');
@@ -93,14 +74,13 @@ sendLocationBtn.addEventListener('click', (e) => {
             longitude:  position.coords.longitude
         }, () => {
             sendLocationBtn.removeAttribute('disabled', 'disabled');
-            console.log('Your Position delivired.');
+            //console.log('Your Position delivired.');
         });
     });
 });
 
 socket.emit('join', { username, room }, (error) => {
     if (error) {
-        alert(error);
-        location.href = '/';
+        Swal.fire({title: error, preConfirm: () => location.href = '/'});
     }
 });

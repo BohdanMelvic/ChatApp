@@ -23,7 +23,7 @@ app.use(express.static(publicDirectoryPath));
 // socket.broadcast.to(room).emit - send data to all users except current user in specific room
 
 io.on('connection', (socket) => {
-    console.log('New WebSocket connection'); 
+    //console.log('New WebSocket connection'); 
 
     socket.on('join', ({ username, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, username, room });
@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed!')
         }
         io.to(user.room).emit('message', generateMessage(user.username, message));
-        callback('Delivired!');
+        callback();
     });
 
     socket.on('sendLocation', (location, callback) => { 

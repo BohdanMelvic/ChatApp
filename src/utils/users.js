@@ -20,7 +20,7 @@ const users = [];
      // Validate username
      if (existingUser) {
          return {
-            error: 'Username has already used.'
+            error: 'This username has already used.'
          }
      }
 
