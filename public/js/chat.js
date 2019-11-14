@@ -11,6 +11,28 @@ const sidebarTemplate = document.querySelector('#sidebarTemplate').innerHTML;
 
 // Options 
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }); // using qs library, which takes url address and creat object with data from my join-form
+const autoscroll = () => {
+    // New message element
+    const newMessage = messages.lastElementChild
+
+    // Height of the new message
+    const newMessageStyles = getComputedStyle(newMessage)
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom)
+    const newMessageHeight = newMessage.offsetHeight + newMessageMargin
+
+    // Visible height
+    const visibleHeight = messages.offsetHeight
+
+    // Height of messages container
+    const containerHeight = messages.scrollHeight
+
+    // How far have I scrolled?
+    const scrollOffset = messages.scrollTop + visibleHeight
+
+    if (containerHeight - newMessageHeight <= scrollOffset) {
+        messages.scrollTop = messages.scrollHeight
+    }
+}
 
 socket.on('message', (message) => {
     const html = Mustache.render(messageTemplate, { 
@@ -18,7 +40,8 @@ socket.on('message', (message) => {
         message: message.text,
         createdAt: moment(message.createdAt).format('H:mm')
      }); // generate messageTemplate from script on index.html page and provided it by variable message 
-    messages.insertAdjacentHTML('beforeend', html)
+    messages.insertAdjacentHTML('beforeend', html);
+    autoscroll();
 });
 
 socket.on('locationMessage', (url) => {
@@ -27,7 +50,8 @@ socket.on('locationMessage', (url) => {
         url: url.location,
         createdAt: moment(url.createdAt).format('H:mm')
      }); // generate messageTemplate from script on index.html page and provided it by variable message 
-    messages.insertAdjacentHTML('beforeend', html)
+    messages.insertAdjacentHTML('beforeend', html);
+    autoscroll();
 });
 
 socket.on('usersInRoom', ({room, users}) => {
