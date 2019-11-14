@@ -9,15 +9,28 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/sweetalert2.css">
 </head>
-<body>
+<body>  
     <div class="centered-form">
+
+        <div class="links">
+            <a href="https://www.linkedin.com/in/bohdan-melvic/"><img src="./img/lin.png" alt=""></a>
+            <a href="https://github.com/BohdanMelvic"><img src="./img/git.png" alt=""></a>       
+        </div>
+
+        <div class="wrap">
+            <h1 class="title">Chat App</h1>
+        </div>
+        
         <div class="centered-form__box">
             <h1>Join</h1>
             <form action="/chat.html">
                 <label for="username">Display Name</label>
                 <input id="username" type="text" name="username" placeholder="UserName" required>
                 <label for="room">Room</label>
-                <input id="room" type="text" name="room" placeholder="Room" required>
+                <input id="room" type="text" name="room" placeholder="Room" list="rooms" required autocomplete="off">
+                <datalist id="rooms">
+                    <option>Active rooms:</option>
+                  </datalist>
                 <button>Join</button>
             </form>
         </div>

@@ -16,8 +16,25 @@ input {
 
 body {
     line-height: 1.4;
-    color: #333333;
+    color: #FFF;
     font-family: Helvetica, Arial, sans-serif;
+}
+
+.links {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 20px;
+}
+
+img {
+    width: 20px;
+    height: 20px;
+    margin: 20px 10px;
+}
+
+img:hover {
+    transform: scale(1.2);
 }
 
 h1 {
@@ -59,17 +76,21 @@ button:disabled {
 /* Join Page Styles */
 
 .centered-form {
-    background: #333744;
-    width: 100vw;
+    background-image: url(../img/People-Chatting.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
     height: 100vh;   
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .centered-form__box {
     box-shadow: 0px 0px 17px 1px #1D1F26;
-    background: #F7F7FA;
+    background: rgb(236, 236, 236);
     padding: 24px;
     width: 250px;
 }
@@ -114,6 +135,12 @@ button:disabled {
 
 /* Message Styles */
 
+#messages {
+    background: #485563;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+}
+
 .message {
     margin-bottom: 16px;   
 }
@@ -138,8 +165,10 @@ button:disabled {
 .compose {
     display: flex;
     flex-shrink: 0;
-    margin-top: 16px;
     padding: 24px;
+    background: #076585;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #076585, #FFF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #076585, #FFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .compose form {
@@ -160,12 +189,24 @@ button:disabled {
     font-size: 14px;
 }
 
+.inputText {
+    background: rgb(236, 236, 236);
+}
+
 /* Chat Sidebar Styles */
+
+#sidebar {
+    background: #485563;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+}
 
 .room-title {
     font-weight: 400;
     font-size: 22px;
-    background: #2c2f3a;
+    background: #606c88;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 24px;   
 }
 
@@ -189,7 +230,7 @@ button:disabled {
     }
     /* Track */
     ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+        background: rgb(139, 139, 139);
     }
     /* Handle */
     ::-webkit-scrollbar-thumb {
@@ -199,3 +240,45 @@ button:disabled {
     ::-webkit-scrollbar-thumb:hover {
     background: #555;
     }
+
+    /* Title */
+
+    @import "compass/css3";
+
+@import "compass/css3/transform";
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
+.title {
+  padding: 40px 0;
+  text-align: center;
+  font-weight: normal;
+  color: rgb(255, 247, 247);
+  text-transform: uppercase;
+  font-size: 6em;
+  white-space: nowrap;
+  font-size: 8vw;
+  letter-spacing: 15px;
+  z-index: 3;
+  font-family: 'Bangers', cursive;
+  text-shadow: 6px 6px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* ========================================================================= */
+
+@media(max-width: 1100px) {
+    .title {
+        padding-top: 100px;
+        font-size: 88px;
+        letter-spacing: 0;
+    }
+}
+
+@media(max-width: 700px) {
+    .title {
+        padding-top: 100px;
+        font-size: 64px;
+        letter-spacing: 0;
+    }
+
+
+}
