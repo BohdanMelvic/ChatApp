@@ -1,7 +1,5 @@
 # Chat App
 
-It's my first full project, which helped me to improve my skills and expand my understanding of Front-End Developing during my studying.
-Weather Forecast App provides current weather condition for any city of the world or for your current position.
 I used here different technologies such as:
 
 - JavaScript, HTML5, CSS for Front-End side;
