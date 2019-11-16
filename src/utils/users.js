@@ -1,9 +1,10 @@
 const users = [];
+const rooms =[];
 
  const addUser = ({id, username, room}) => {
      // Cleaning data
      username = username.trim().toLowerCase();
-     room = room.trim().toLowerCase();
+     room = room.trim();
 
      // Validate data
      if (!username || !room) {
@@ -23,6 +24,11 @@ const users = [];
             error: 'This username has already used.'
          }
      }
+
+      // Store room 
+      if (!rooms.includes(room)) {
+         rooms.push(room);
+    }
 
      // Store user
      const user = { id, username, room };
@@ -48,9 +54,14 @@ const users = [];
     return users.filter((user) => user.room === room);
 };
 
+const getRooms = () => {
+    return rooms;
+}
+
 module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUsersInRoom
+    getUsersInRoom,
+    getRooms
 }
