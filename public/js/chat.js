@@ -84,3 +84,13 @@ socket.emit('join', { username, room }, (error) => {
         Swal.fire({title: error, preConfirm: () => location.href = '/'});
     }
 });
+
+function sidebarBtn() {
+    var x = document.getElementById("sidebar");
+
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+  }
+}

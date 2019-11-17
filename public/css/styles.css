@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+.hide {
+    display: none;
+}
+
 html {
     font-size: 16px;
 }
@@ -202,6 +206,15 @@ button:disabled {
 }
 
 /* Chat Sidebar Styles */
+.icon {
+    display: none;
+    z-index: 99;
+    padding: 20px;
+    color: #FFF;
+    background: #606c88;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
 #sidebar {
     background: #485563;  /* fallback for old browsers */
@@ -275,7 +288,7 @@ button:disabled {
 
 @media(max-width: 1100px) {
     .title {
-        padding-top: 100px;
+        padding-top: 50px;
         font-size: 88px;
         letter-spacing: 0;
     }
@@ -287,7 +300,6 @@ button:disabled {
     }
 
     .title {
-        padding-top: 100px;
         font-size: 64px;
         letter-spacing: 0;
     }
@@ -304,6 +316,10 @@ button:disabled {
         font-size: 12px;
     }
 
+    .chat__sidebar {
+        width: 200px;
+    }
+
     .compose {
         flex-direction: column;
         align-items: space-between;
@@ -318,6 +334,51 @@ button:disabled {
     }
 
     .compose input {
+        margin-right: 0;
         margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 500px) {
+
+    .chat {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .title {
+        font-size: 58px;
+    }
+
+    .icon {
+        display: block;
+    }
+
+    #sidebar {
+        display: none;
+        top: 60px;
+        position: absolute;
+        z-index: 100;
+    }
+
+    #messages {
+        height: 50vh;
+    }
+
+    .compose {
+        height: 150px;
+        display: block;
+        text-align: center;
+        padding: 15px;
+    }
+
+    #messageForm {
+        display: block;
+        text-align: center;
+    }
+
+    .messageFormBtn, #sendLocationBtn {
+        padding: 5px;
+        width: 60%;
     }
 }
