@@ -85,6 +85,8 @@ socket.emit('join', { username, room }, (error) => {
     }
 });
 
+
+// Sidebar hide function
 function sidebarBtn() {
     var x = document.getElementById("sidebar");
 

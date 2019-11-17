@@ -34,6 +34,17 @@
             </form>
         </div>
     </div>
+
+    <script id="roomsListTemplate" type="text/html">
+            {{#rooms}}
+                <option>{{room}}</option>
+            {{/rooms}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/sweetalert2.js"></script>
+    <script src="/js/joinPage.js"></script>
 </body>
 </html>

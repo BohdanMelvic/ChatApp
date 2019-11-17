@@ -7,7 +7,7 @@ const { generateMessage, generateLocation } = require('./utils/messages');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users');
+const { addUser, removeUser, getUser, getUsersInRoom, getRooms } = require('./utils/users');
 
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -23,7 +23,7 @@ app.use(express.static(publicDirectoryPath));
 // socket.broadcast.to(room).emit - send data to all users except current user in specific room
 
 io.on('connection', (socket) => {
-    //console.log('New WebSocket connection'); 
+    console.log('New WebSocket connection'); 
 
     socket.on('join', ({ username, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, username, room });
@@ -38,6 +38,10 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('usersInRoom', {
             room: user.room,
             users: getUsersInRoom(user.room)
+        });
+        io.emit('roomsList', {
+            room: user.room,
+            rooms: getRooms()
         });
 
         callback();
