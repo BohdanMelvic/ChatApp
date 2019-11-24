@@ -25,9 +25,16 @@ const rooms =[];
          }
      }
 
-      // Store room 
-      if (!rooms.includes(room)) {
-         rooms.push({room: room});
+    // Store room 
+    let roomIs = true;
+    rooms.forEach( (obj) => {
+    if( obj.room === room) {
+        roomIs = false;
+    }
+    });
+
+    if (roomIs) {
+        rooms.push({room: room});
     }
 
      // Store user

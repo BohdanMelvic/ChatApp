@@ -31,13 +31,13 @@ body {
     padding-right: 20px;
 }
 
-img {
+.social {
     width: 25px;
     height: 25px;
     margin: 20px 10px;
 }
 
-img:hover {
+.social:hover {
     transform: scale(1.2);
 }
 
@@ -242,6 +242,18 @@ button:disabled {
     list-style-type: none;
     font-weight: 300;
     padding: 12px 24px 0 24px;
+}
+
+.userRow {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.userLogo {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
 }
 
 /* Scroll styles */
