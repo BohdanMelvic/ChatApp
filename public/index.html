@@ -11,18 +11,36 @@
 </head>
 <body>  
     <div class="centered-form">
+        <div class="wrap">
+                <h1 class="title">My Chat App</h1>
+        </div>
         <div class="links">
             <a href="https://www.linkedin.com/in/bohdan-melvic/"><img class="social" src="./img/lin.png" alt=""></a>
             <a href="https://github.com/BohdanMelvic"><img class="social" src="./img/git.png" alt=""></a>       
         </div>
 
-        <div class="wrap">
-            <h1 class="title">Chat App</h1>
-        </div>
+        
         
         <div class="centered-form__box">
             <h1 class="chat-title">Join</h1>
             <form action="/chat.html" id="registerForm">
+                <label for="avatarBox">Who will you be today?</label>
+                <div id="avatarBox">
+                    <div class="firstRow">
+                        <div class="avatarSelection" style="background-image: url(/img/duck.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="duck.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/ostrich.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="ostrich.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/squirrel.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="squirrel.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/lion.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="lion.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/shark.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="shark.png" /></div>
+                    </div>
+                    <div class="secondRow">
+                        <div class="avatarSelection" style="background-image: url(/img/turtle.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="turtle.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/cat.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="cat.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/crocodile.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="crocodile.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/deer.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="deer.png" /></div>
+                        <div class="avatarSelection" style="background-image: url(/img/fox.png);" onclick="selectAvatar(this)"><input type="radio" name="avatar" value="fox.png" /></div>
+                    </div>
+                </div>
                 <label for="username">Display Name</label>
                 <input id="username" type="text" name="username" placeholder="UserName" required>
                 <label for="room">Creat or Choose Active Room</label>
@@ -49,6 +67,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/sweetalert2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="/js/joinPage.js"></script>
 </body>
 </html>

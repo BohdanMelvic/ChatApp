@@ -29,6 +29,7 @@ body {
     justify-content: flex-end;
     width: 100%;
     padding-right: 20px;
+    margin-bottom: 100px;
 }
 
 .social {
@@ -49,7 +50,8 @@ label {
     display: block;
     font-size: 14px;
     margin-bottom: 8px;
-    color: #777;
+    color: rgb(80, 80, 80);
+    font-weight: 700;
 }
 
 input {
@@ -96,7 +98,7 @@ button:disabled {
     box-shadow: 0px 0px 17px 1px #1D1F26;
     background: rgb(236, 236, 236);
     padding: 24px;
-    width: 250px;
+
 }
 
 .centered-form button {
@@ -112,10 +114,44 @@ button:disabled {
     pointer-events: none;
 }
 
+#avatarBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.avatarSelection {
+    width: 75px;
+    height: 75px;
+    margin: 3px;
+    display: inline-block;
+    cursor: pointer;
+    border: 3px solid black;
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: grayscale(95%);
+}
+
+.avatarSelection:hover {
+    filter: none;
+  }
+
+.avatarSelection input {
+    display: none;
+  }
+
+.avatar-active {
+    filter: none;
+    background-color: yellowgreen;
+}
+  
+
 /* Chat Page Layout */
 
 .chat-title {
     color: #777;
+    text-align: center;
 }
 
 .chat {
@@ -281,16 +317,20 @@ button:disabled {
 @import "compass/css3/transform";
 @import url(https://fonts.googleapis.com/css?family=Bangers);
 
+.wrap {
+    display: block;
+    position: absolute;
+    z-index: 99;
+}
+
 .title {
-  padding: 40px 0;
   text-align: center;
-  font-weight: normal;
-  color: rgb(255, 247, 247);
+  font-weight: 700;
+  color: rgb(210, 248, 133);
   text-transform: uppercase;
   font-size: 6em;
   white-space: nowrap;
-  font-size: 8vw;
-  letter-spacing: 15px;
+  letter-spacing: 20px;
   z-index: 3;
   font-family: 'Bangers', cursive;
   text-shadow: 6px 6px 0 rgba(0, 0, 0, 0.7);
@@ -300,9 +340,12 @@ button:disabled {
 
 @media(max-width: 1100px) {
     .title {
-        padding-top: 50px;
-        font-size: 88px;
+        font-size: 64px;
         letter-spacing: 0;
+    }
+
+    .links {
+        margin-bottom: 50px;
     }
 }
 
@@ -312,7 +355,7 @@ button:disabled {
     }
 
     .title {
-        font-size: 64px;
+        font-size: 42px;
         letter-spacing: 0;
     }
     
@@ -359,7 +402,11 @@ button:disabled {
     }
 
     .title {
-        font-size: 58px;
+        font-size: 36px;
+    }
+
+    .links {
+        margin-bottom: 20px;
     }
 
     .icon {
