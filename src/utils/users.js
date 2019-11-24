@@ -27,7 +27,7 @@ const rooms =[];
 
       // Store room 
       if (!rooms.includes(room)) {
-         rooms.push(room);
+         rooms.push({room: room});
     }
 
      // Store user
@@ -58,10 +58,29 @@ const getRooms = () => {
     return rooms;
 }
 
+const removeRoom = (id) => {
+    const index = users.findIndex((user) => {
+        return user.id === id;
+    });
+
+    if (index !== -1) {
+        const roomName = users[index].room;
+
+        const roomIndex = rooms.findIndex((room) => {
+            return room.room === roomName;
+        });
+    
+        if (roomIndex !== -1) {
+            return rooms.splice(roomIndex, 1)[0];
+        }
+    }
+}
+
 module.exports = {
     addUser,
     removeUser,
     getUser,
     getUsersInRoom,
-    getRooms
+    getRooms,
+    removeRoom
 }

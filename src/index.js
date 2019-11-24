@@ -7,7 +7,7 @@ const { generateMessage, generateLocation } = require('./utils/messages');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-const { addUser, removeUser, getUser, getUsersInRoom, getRooms } = require('./utils/users');
+const { addUser, removeUser, getUser, getUsersInRoom, getRooms, removeRoom } = require('./utils/users');
 
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -25,6 +25,10 @@ app.use(express.static(publicDirectoryPath));
 io.on('connection', (socket) => {
     console.log('New WebSocket connection'); 
 
+    io.emit('roomsList', {
+        rooms: getRooms()
+    });
+
     socket.on('join', ({ username, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, username, room });
 
@@ -38,10 +42,6 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('usersInRoom', {
             room: user.room,
             users: getUsersInRoom(user.room)
-        });
-        io.emit('roomsList', {
-            room: user.room,
-            rooms: getRooms()
         });
 
         callback();
@@ -66,7 +66,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
+        const roomD = removeRoom(socket.id);
         const user = removeUser(socket.id);
+       
 
         if (user) {
             io.to(user.room).emit('message', generateMessage('Chat App',`${user.username} has left the chat.`));

@@ -1,11 +1,15 @@
 const socket = io();
 
-const roomsList = document.querySelector('#rooms');
+
+// Rooms List
+
+const roomsList = document.querySelector('#inputBox');
 const roomsListTemplate = document.querySelector('#roomsListTemplate').innerHTML;
 
-socket.on('roomsList', ({room, rooms}) => {
-    const html = Mustache.render(sidebarTemplate, { room, rooms });
+socket.on('roomsList', ({ rooms }) => {
+    const html = Mustache.render(roomsListTemplate, {rooms});
 
-    document.querySelector('#roomsList').innerHTML = html;
+    roomsList.innerHTML = html;
+    console.log(rooms);
 });
 

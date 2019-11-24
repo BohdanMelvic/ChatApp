@@ -22,23 +22,27 @@
         
         <div class="centered-form__box">
             <h1 class="chat-title">Join</h1>
-            <form action="/chat.html">
+            <form action="/chat.html" id="registerForm">
                 <label for="username">Display Name</label>
                 <input id="username" type="text" name="username" placeholder="UserName" required>
                 <label for="room">Creat or Choose Active Room</label>
-                <input id="room" type="text" name="room" placeholder="Room" list="rooms" required autocomplete="off">
-                <datalist id="rooms">
+
+                <div id="inputBox">
+                    <input id="room" type="text" name="room" placeholder="Room" list="rooms" required autocomplete="off">
+                </div>
                 
-                </datalist>
                 <button>Join</button>
             </form>
         </div>
     </div>
 
     <script id="roomsListTemplate" type="text/html">
+        <input id="room" type="text" name="room" placeholder="Room" list="rooms" required autocomplete="off">
+        <datalist id="rooms">
             {{#rooms}}
                 <option>{{room}}</option>
             {{/rooms}}
+        </datalist>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
