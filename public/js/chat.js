@@ -10,7 +10,7 @@ const locationeTemplate = document.querySelector('#locationeTemplate').innerHTML
 const sidebarTemplate = document.querySelector('#sidebarTemplate').innerHTML;
 
 // Options 
-const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }); // using qs library, which takes url address and creat object with data from my join-form
+const { avatar, username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }); // using qs library, which takes url address and creat object with data from my join-form
 const autoscroll = () => {
     messages.scrollTop = messages.scrollHeight;
 }

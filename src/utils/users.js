@@ -1,7 +1,8 @@
 const users = [];
 const rooms =[];
+const avatars = [];
 
- const addUser = ({id, username, room}) => {
+ const addUser = ({id, username, room, avatar}) => {
      // Cleaning data
      username = username.trim().toLowerCase();
      room = room.trim();

@@ -29,8 +29,8 @@ io.on('connection', (socket) => {
         rooms: getRooms()
     });
 
-    socket.on('join', ({ username, room }, callback) => {
-        const { error, user } = addUser({ id: socket.id, username, room });
+    socket.on('join', ({ avatar, username, room }, callback) => {
+        const { error, user } = addUser({ id: socket.id, avatar, username, room });
 
         if (error) {
             return callback(error);
