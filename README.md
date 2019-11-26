@@ -8,7 +8,7 @@ I used here different technologies such as:
 - JavaScript, HTML5, CSS for Front-End side;
 - Node.js - for Back-End side;
 - Socket.io - for creating chat functionality;
-- https://www.flaticon.com/ - 
+- https://www.flaticon.com/ - avatar images;
 
 
 <br>
