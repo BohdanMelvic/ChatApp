@@ -1,10 +1,14 @@
 # Chat App
 
+This project is a simple Chat, where you can message each other during active session. I don't connect it to any database, so after close tab with ChatApp you can't see old messages. 
+Username and room name is unique and requided. You can create your personal room for chating with your friend or choose already created room. List of active rooms you can select in input field. 
+
 I used here different technologies such as:
 
 - JavaScript, HTML5, CSS for Front-End side;
 - Node.js - for Back-End side;
 - Socket.io - for creating chat functionality;
+- https://www.flaticon.com/ - avatar images;
 
 
 <br>
