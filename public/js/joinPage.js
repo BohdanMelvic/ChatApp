@@ -10,7 +10,6 @@ socket.on('roomsList', ({ rooms }) => {
     const html = Mustache.render(roomsListTemplate, {rooms});
 
     roomsList.innerHTML = html;
-    console.log(rooms);
 });
 
 // Avatar 

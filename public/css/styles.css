@@ -190,7 +190,18 @@ button:disabled {
 }
 
 .message {
-    margin-bottom: 16px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 10px;
+    background-color: rgb(153, 153, 153);  
+}
+
+.logoUsername {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
 }
 
 .message__name {
@@ -200,12 +211,12 @@ button:disabled {
 }
 
 .message__meta {
-    color: #777;
+    color: rgb(70, 70, 70);
     font-size: 14px;
 }
 
 .message a {
-    color: #0070CC;
+    color: #FFF;
 }
 
 /* Message Composition Styles */
@@ -259,8 +270,10 @@ button:disabled {
 }
 
 .room-title {
+    text-align: center;
     font-weight: 400;
     font-size: 22px;
+    font-weight: 700;
     background: #606c88;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -282,8 +295,10 @@ button:disabled {
 
 .userRow {
     margin: 10px 0;
+    padding: 5px;
     display: flex;
     align-items: center;
+    background-color: rgb(156, 156, 156);
 }
 
 .userLogo {
@@ -350,13 +365,18 @@ button:disabled {
 }
 
 @media(max-width: 700px) {
+    .links {
+        margin-bottom: 20px;
+    }
     .chat__sidebar{
         width: 250px;
     }
 
     .title {
-        font-size: 42px;
+        font-size: 38px;
         letter-spacing: 0;
+        color: rgb(188, 209, 0);
+        text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7);
     }
     
     .room-title {
@@ -365,6 +385,11 @@ button:disabled {
 
     .list-title {
         font-size: 14px;
+    }
+
+    .avatarSelection {
+        width: 50px;
+        height: 50px;
     }
 
     .users, .message, .message__meta {
@@ -402,11 +427,23 @@ button:disabled {
     }
 
     .title {
-        font-size: 36px;
+        padding-top: 15px;
+        padding-right: 70px;
+        font-size: 24px;
+        color: rgb(188, 209, 0);
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7);
     }
 
     .links {
         margin-bottom: 20px;
+    }
+
+    .chat-title {
+        font-size: 28px;
+    }
+    .avatarSelection {
+        width: 35px;
+        height: 35px;
     }
 
     .icon {

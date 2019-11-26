@@ -1,9 +1,9 @@
 const users = [];
 const rooms =[];
-const avatars = [];
 
- const addUser = ({id, username, room, avatar}) => {
+ const addUser = ({id, avatar, username, room, }) => {
      // Cleaning data
+     avatar = '/img/' + avatar;
      username = username.trim().toLowerCase();
      room = room.trim();
 
@@ -39,7 +39,7 @@ const avatars = [];
     }
 
      // Store user
-     const user = { id, username, room };
+     const user = { id, avatar, username, room };
      users.push(user);
      return { user };
  };

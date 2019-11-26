@@ -32,15 +32,19 @@
 
     <script id="messageTemplate" type="text/html">
         <div class="message">
-            <p>
+            <p class="logoUsername">
+                <img class="userLogo" src="{{avatar}}" alt="">
                 <span class="message__name">{{username}}</span>
+            </p>
+            <p>
+                {{message}}
                 <span class="message__meta">{{createdAt}}</span>
             </p>
-            <p>{{message}}</p>
         </div>
     </script>
     <script id="locationeTemplate" type="text/html">
         <div class="message">
+            <img class="userLogo" src="{{avatar}}" alt="">
             <p>
                 <span class="message__name">{{username}}</span>
                 <span class="message__meta">{{createdAt}}</span>
@@ -53,7 +57,7 @@
         <h3 class="list-title">Active Users:</h3>
         <ul class="users">
             {{#users}}
-                <li class="userRow"> <img class="userLogo" src="/img/userIcon.png" alt=""> {{username}}</li>
+                <li class="userRow"> <img class="userLogo" src="{{avatar}}" alt=""> {{username}}</li>
             {{/users}}
         </ul>
     </script>

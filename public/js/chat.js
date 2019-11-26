@@ -16,7 +16,8 @@ const autoscroll = () => {
 }
 
 socket.on('message', (message) => {
-    const html = Mustache.render(messageTemplate, { 
+    const html = Mustache.render(messageTemplate, {
+        avatar: message.avatar,
         username: message.username,
         message: message.text,
         createdAt: moment(message.createdAt).format('H:mm')
@@ -26,7 +27,8 @@ socket.on('message', (message) => {
 });
 
 socket.on('locationMessage', (url) => {
-    const html = Mustache.render(locationeTemplate, { 
+    const html = Mustache.render(locationeTemplate, {
+        avatar: url.avatar, 
         username: url.username,
         url: url.location,
         createdAt: moment(url.createdAt).format('H:mm')
@@ -79,7 +81,7 @@ sendLocationBtn.addEventListener('click', (e) => {
     });
 });
 
-socket.emit('join', { username, room }, (error) => {
+socket.emit('join', { avatar, username, room }, (error) => {
     if (error) {
         Swal.fire({title: error, preConfirm: () => location.href = '/'});
     }

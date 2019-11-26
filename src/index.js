@@ -22,8 +22,7 @@ app.use(express.static(publicDirectoryPath));
 // io.to(room).emit - send data to ALL users in specific room
 // socket.broadcast.to(room).emit - send data to all users except current user in specific room
 
-io.on('connection', (socket) => {
-    console.log('New WebSocket connection'); 
+io.on('connection', (socket) => { 
 
     io.emit('roomsList', {
         rooms: getRooms()
@@ -37,9 +36,10 @@ io.on('connection', (socket) => {
         }
         socket.join(user.room); 
 
-        socket.emit('message', generateMessage('Chat App', 'Welcome!'));
-        socket.broadcast.to(room).emit('message', generateMessage('Chat App', `${username} has joined.`));
+        socket.emit('message', generateMessage("/img/userIcon.png", 'Chat App', 'Welcome!'));
+        socket.broadcast.to(room).emit('message', generateMessage("/img/userIcon.png", 'Chat App', `${username} has joined.`));
         io.to(user.room).emit('usersInRoom', {
+            avatar: user.avatar,
             room: user.room,
             users: getUsersInRoom(user.room)
         });
@@ -54,14 +54,14 @@ io.on('connection', (socket) => {
         if (filter.isProfane(message)) {
             return callback('Profanity is not allowed!')
         }
-        io.to(user.room).emit('message', generateMessage(user.username, message));
+        io.to(user.room).emit('message', generateMessage(user.avatar, user.username, message));
         callback();
     });
 
     socket.on('sendLocation', (location, callback) => { 
         const user = getUser(socket.id);
 
-        io.to(user.room).emit('locationMessage', generateLocation(user.username, location));
+        io.to(user.room).emit('locationMessage', generateLocation(user.avatar, user.username, location));
         callback();
     });
 
@@ -71,8 +71,9 @@ io.on('connection', (socket) => {
        
 
         if (user) {
-            io.to(user.room).emit('message', generateMessage('Chat App',`${user.username} has left the chat.`));
+            io.to(user.room).emit('message', generateMessage("/img/userIcon.png", 'Chat App',`${user.username} has left the chat.`));
             io.to(user.room).emit('usersInRoom', {
+                avatar: user.avatar,
                 room: user.room,
                 users: getUsersInRoom(user.room)  
             });
